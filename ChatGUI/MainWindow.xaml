@@ -4,26 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatGUI"
+        xmlns:vms="clr-namespace:ChatGUI.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vms:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
+
+    <Window.DataContext>
+        <vms:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-        <Grid x:Name="MessagesSection" Grid.Column="1">
+        
+        <Grid x:Name="MessagesSection" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-
+            
             <StackPanel x:Name="messages" Grid.Column="1" Margin="5"  VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Kis Pista" Background="LightGray"/>
-                    <Label Content="2022.10.04" Background="LightGray"/>
-                </StackPanel>
-                <TextBox Text="Csá" FontSize="15"/>
+                <ItemsControl ItemsSource="{Binding Messages}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding sender}" Background="LightGray"/>
+                                    <Label Content="{Binding date}" Background="LightGray"/>
+                                    <TextBox Text="{Binding msg}" FontSize="15"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
 
             <Grid x:Name="sendSection" Grid.Row="1">
@@ -33,13 +48,13 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="MessageToSend" Grid.Column="0" Margin="10"/>
-                <Button x:Name="MessageSender" Grid.Column="1" Content="KÜLD" Margin="10"/>
+                <Button x:Name="MessageSender" Grid.Column="1" Content="KÜLD" Margin="10" Command="{Binding SendCommand}"/>
             </Grid>
         </Grid>
 
         <StackPanel>
             <Label Grid.Row="0" Content="Név:" FontSize="20"/>
-            <TextBox x:Name="UserName" Text="Kakk"/>
+            <TextBox x:Name="UserName" Text="{Binding Sender}"/>
         </StackPanel>
     </Grid>
 </Window>

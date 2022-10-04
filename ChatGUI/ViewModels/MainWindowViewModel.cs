@@ -41,26 +41,28 @@ namespace ChatGUI.ViewModels
 
         public MainWindowViewModel()
         {
-            //if (!IsInDesigneMode)
-            //{
-            //    Messages = new RestCollection<Message>("http://localhost:44869/", "message", "hub");
-            //    SendCommand = new RelayCommand(() => {
-            //        Messages.Add(new Message() { sender = this.sender, SentMessage = inputMessage });
-            //        inputMessage = "";
-            //    }, () => { return inputMessage != null && inputMessage != ""; });
 
-            //    // Hidden dependency, sorry, quick solution, should be done /w IoC :)
-            //    NameService = new NameServiceViaWindow();
+            if (!IsInDesigneMode)
+            {
+                Messages = new RestCollection<Message>("http://localhost:44869/", "message", "hub");
+                SendCommand = new RelayCommand(() =>
+                {
+                    Messages.Add(new Message() { sender = this.sender, msg = inputMessage });
+                    inputMessage = "";
+                }, () => { return inputMessage != null && inputMessage != ""; });
 
-            //    // Collection change event forward to code behind to scrollbar adjustment
-            //    Messages.CollectionChanged += Messages_CollectionChanged;
+                //// Hidden dependency, sorry, quick solution, should be done /w IoC :)
+                //NameService = new NameServiceViaWindow();
 
-            //    // Window Loaded event receiver
-            //    Messenger.Register<object, string, string>(this, "MainWindowLoaded", (recipient, msg) =>
-            //    {
-            //        this.Sender = NameService.GetName();
-            //    });
-            //}
+                //// Collection change event forward to code behind to scrollbar adjustment
+                //Messages.CollectionChanged += Messages_CollectionChanged;
+
+                //// Window Loaded event receiver
+                //Messenger.Register<object, string, string>(this, "MainWindowLoaded", (recipient, msg) =>
+                //{
+                //    this.Sender = NameService.GetName();
+                //});
+            }
         }
 
     }
