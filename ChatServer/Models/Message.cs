@@ -7,8 +7,8 @@ namespace ChatServer.Models
 {
     public class Message
     {
-        string msg;
-        DateTime date;
-        string sender;
+        public string msg { get; set; }
+        public DateTime date { get; set; } = DateTime.Now;
+        public string sender { get; set; }
     }
 }
