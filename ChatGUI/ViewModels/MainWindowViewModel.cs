@@ -18,7 +18,7 @@ namespace ChatGUI.ViewModels
     {
         private string sender;
         private string inputMessage;
-        RestCollection<Message> Messages { get; set; }
+        public RestCollection<Message> Messages { get; set; }
 
         public ICommand SendCommand { get; set; }
 
