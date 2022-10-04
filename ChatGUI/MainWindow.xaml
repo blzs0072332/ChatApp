@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid x:Name="MessagesSection" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="messages" Grid.Column="1" Margin="5"  VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Kis Pista" Background="LightGray"/>
+                    <Label Content="2022.10.04" Background="LightGray"/>
+                </StackPanel>
+                <TextBox Text="Csá" FontSize="15"/>
+            </StackPanel>
+
+            <Grid x:Name="sendSection" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="MessageToSend" Grid.Column="0" Margin="10"/>
+                <Button x:Name="MessageSender" Grid.Column="1" Content="KÜLD" Margin="10"/>
+            </Grid>
+        </Grid>
+
+        <StackPanel>
+            <Label Grid.Row="0" Content="Név:" FontSize="20"/>
+            <TextBox x:Name="UserName" Text="Kakk"/>
+        </StackPanel>
     </Grid>
 </Window>
